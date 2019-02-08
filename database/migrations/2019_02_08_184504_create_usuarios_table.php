@@ -19,6 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('nombre_usuario')->default('')->nullable(false);
             $table->string('nombre')->default(null);
             $table->string('dni')->nullable(false);
+            $table->string('Luis')->nullable(false);
 
 
 
