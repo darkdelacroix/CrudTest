@@ -15,3 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/madre', function () {
+    return view('layouts.tabla_cliente');
+});
+
+Route::get('/formulario_ubicacion','UbicacionController@store');
+
+Route::get('/tabla_ubicaciones','UbicacionController@index');

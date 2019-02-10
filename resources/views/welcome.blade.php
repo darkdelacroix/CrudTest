@@ -8,8 +8,14 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <ling href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"></ling>
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+                crossorigin="anonymous"></script>
 
         <!-- Styles -->
+
         <style>
             html, body {
                 background-color: #fff;
@@ -80,9 +86,12 @@
             @endif
 
 
+
+
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                    @yield('content')
                 </div>
 
                 <div class="links">
@@ -91,9 +100,19 @@
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
+                    <a href="/tabla_ubicaciones">Tabla Clientes</a>
+
+                @include('formularios.formulario_cliente')
+                    @include('formularios.formulario_ubicaciones')
                 </div>
+                @yield('table')
             </div>
+
         </div>
+        <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+
+        @yield('scripts')
     </body>
 </html>
