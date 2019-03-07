@@ -7,18 +7,12 @@ use Illuminate\Http\Request;
 
 class UbicacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-            $ubicaciones=Ubicacion::all();
 
-            return view('layouts.tabla_ubicaciones')->with('ubicaciones',$ubicaciones);
-//   return response()->json($ubicaciones);
+    public function index(Request $request)
+    {
+            $ubicaciones=Ubicacion::all();
+            return view('vistas.ubicacion')->with('ubicaciones',$ubicaciones);
+
     }
 
     /**
@@ -29,6 +23,7 @@ class UbicacionController extends Controller
     public function create()
     {
         //
+        return view('crear.ubicaciones');
     }
 
     /**
@@ -41,52 +36,44 @@ class UbicacionController extends Controller
     {
         //
         $ubicacion=new Ubicacion();
-
-        $ubicacion['codigo_ubicacion']=$request->input('codigo_ubicacion');
         $ubicacion['nombre_ubicacion']=$request->input('nombre_ubicacion');
         $ubicacion['descripcion_ubicacion']=$request->input('descripcion_ubicacion');
         $ubicacion['observaciones_ubicacion']=$request->input('observaciones_ubicacion');
         if($ubicacion->save()){
-       return      response('todo guay',200);
+            return back() ->with('success','Creado correctamente');;
         }else{
-       return     response('mal',200);
+            $errors="Error";
+       return     back()->withErrors($errors);
         }
 
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Ubicacion  $ubicacion
-     * @return \Illuminate\Http\Response
-     */
     public function show(Ubicacion $ubicacion)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Ubicacion  $ubicacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit( )
+    public function edit($id )
     {
         //
+        $ubicacion=Ubicacion::find($id);
+        return view('editar.vistaeditar')->with('ubicacion',$ubicacion);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ubicacion  $ubicacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ubicacion $ubicacion)
+    public function update($id, Request $request)
     {
         //
+        $ubicacion=Ubicacion::findOrFail($id);
+        $ubicacion['codigo_ubicacion']=$request->input('codigo_ubicacion');
+        $ubicacion['nombre_ubicacion']=$request->input('nombre_ubicacion');
+        $ubicacion['descripcion_ubicacion']=$request->input('descripcion_ubicacion');
+        $ubicacion['observaciones_ubicacion']=$request->input('observaciones_ubicacion');
+
+        $ubicacion->save();
+        $ubicaciones=Ubicacion::all();
+        return view('vistas.ubicacion')->with('ubicaciones',$ubicaciones) ->with('success','Actualización completa');;
+
     }
 
     /**
@@ -95,8 +82,12 @@ class UbicacionController extends Controller
      * @param  \App\Ubicacion  $ubicacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ubicacion $ubicacion)
+    public function destroy($id)
     {
         //
+        $ubicacion=Ubicacion::findOrFail($id);
+         $ubicacion->delete();
+        return back()->withErrors(['Eliminacion completada']);
+
     }
 }

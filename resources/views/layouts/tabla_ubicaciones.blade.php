@@ -1,11 +1,10 @@
 
-@extends('welcome')
-@section('table')
-
     <table id="myTable">
-        <caption>Lista de compras para el sábado, 07 de julio de 2012</caption>
+        <caption>Lista de ubicaciones</caption>
         <thead>
-        <tr><th>Codigo</th><th>Nombre</th><th>Descripcion</th><th>Observacion</th></tr>
+        <tr><th>Codigo</th><th>Nombre</th><th>Descripcion</th>
+            <th>Observacion</th><th>Editar</th><th>Borrar</th>
+        </tr>
         </thead>
         <tbody>
         @foreach($ubicaciones as $ubicacion)
@@ -13,17 +12,11 @@
                 <td>{{$ubicacion->nombre_ubicacion}}</td>
                 <td>{{$ubicacion->descripcion_ubicacion}}</td>
                 <td>{{$ubicacion->observaciones_ubicacion}}</td>
+                <td><a href="/ubicacion_editar/{{$ubicacion->id}}" class="btn btn-warning" > Editar </a></td>
+                <td><a href="/ubicacion_borrar/{{$ubicacion->id}}" class="btn btn-danger" > Borrar </a></td>
             </tr>
             @endforeach
       </tbody>
     </table>
 
-@endsection
 
-@section('scripts')
-    <script>
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-    } );
-    </script>
-    @endsection

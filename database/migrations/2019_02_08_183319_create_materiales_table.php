@@ -17,7 +17,7 @@ class CreateMaterialesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('codigo_material')->unique();
             $table->string('nombre_material',50);
-            $table->string('des_material',100);
+            $table->string('desc_material',100);
 
             $table->timestamps();
         });

@@ -1,5 +1,5 @@
 
-@extends('welcome')
+@extends('vistas.inicio')
 @section('content')
 
     <div>tu madre la vieja</div>

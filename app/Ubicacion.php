@@ -8,5 +8,7 @@ class Ubicacion extends Model
 {
     //
     protected $table='ubicacions';
+    protected $guarded = [];
+
 
 }

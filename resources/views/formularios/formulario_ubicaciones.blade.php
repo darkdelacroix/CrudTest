@@ -1,3 +1,19 @@
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Ups!</strong> Error.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
+
 <form method="get" action="/formulario_ubicacion">
 
     <div class="form-group">
@@ -17,5 +33,5 @@
         <input type="text" class="form-control" name="observaciones_ubicacion" id="observaciones_ubicacion">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
