@@ -15,7 +15,7 @@
                 <td>{{$usuario->pass}}</td>
                 <td>{{$usuario->email}}</td>
                 <td>{{$usuario->telefono}}</td>
-                <td><a href="/usuario_editar/{{$usuario->id}}" class="btn btn-warning" > Editar </a></td>
+               <td><a href="/usuario_editar/{{$usuario->id}}" class="btn btn-warning" > Editar </a></td>
                 <td><a href="/usuario_borrar/{{$usuario->id}}" class="btn btn-danger" > Borrar </a></td>
 
 

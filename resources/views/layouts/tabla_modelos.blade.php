@@ -1,5 +1,5 @@
-@extends('welcome')
-@section('table')
+@extends('vistas.inicio')
+@section('content')
 
     <table id="myTable">
         <caption>Lista de modelos</caption>

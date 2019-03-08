@@ -10,4 +10,8 @@ class Marca extends Model
     protected $table='marcas';
     protected $guarded = [];
 
+    public function inventarios()
+    {
+        return $this->hasMany('App\Inventario');
+    }
 }

@@ -15,7 +15,7 @@ class CreateModelosTable extends Migration
     {
         Schema::create('modelos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('codigo_modelo')->unique();
+
             $table->string('nombre_modelo',50);
             $table->string('observaciones_modelo',512);
             $table->timestamps();

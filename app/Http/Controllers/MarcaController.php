@@ -32,7 +32,7 @@ class MarcaController extends Controller
         $marca['nombre_marca']=$request->input('nombre_marca');
         $marca['observaciones_marca']=$request->input('observaciones_marca');
         if($marca->save()){
-            return back() ->with('success','Creado correctamente');;
+            return redirect('/marcas') ->with('success','Creado correctamente');
         }else{
             $errors="Error";
             return     back()->withErrors($errors);

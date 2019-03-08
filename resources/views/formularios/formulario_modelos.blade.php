@@ -13,5 +13,5 @@
         <input type="text" name="observaciones_modelo"class="form-control" id="observaciones_modelo">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>

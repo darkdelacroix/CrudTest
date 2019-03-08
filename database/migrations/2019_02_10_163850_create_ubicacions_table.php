@@ -15,7 +15,6 @@ class CreateUbicacionsTable extends Migration
     {
         Schema::create('ubicacions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('codigo_ubicacion')->nullable(false);
             $table->string('nombre_ubicacion',50);
             $table->string('descripcion_ubicacion',50);
             $table->string('observaciones_ubicacion',512);

@@ -15,7 +15,6 @@ class CreateOrigenesTable extends Migration
     {
         Schema::create('origenes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('codigo_origenes')->unique();
             $table->string('nombre_origenes',50);
             $table->string('observaciones_origenes',512);
             $table->timestamps();

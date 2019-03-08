@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pantalla extends Model
+class Procesador extends Model
 {
     //
-    protected $table='pantallas';
+    protected $table='procesadores';
     public function inventarios()
     {
         return $this->hasMany('App\Inventario');

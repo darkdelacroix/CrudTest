@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Estado;
 use App\Inventario;
+use App\Marca;
+use App\Modelo;
+use App\Origen;
+use App\Pantalla;
+use App\Procesador;
+use App\Provedor;
 use Illuminate\Http\Request;
 
 class InventarioController extends Controller
@@ -15,6 +22,8 @@ class InventarioController extends Controller
     public function index()
     {
         //
+        $inventarios=Inventario::all();
+        return view('layouts.tabla_inventarios')->with('inventarios',$inventarios);
     }
 
     /**
@@ -25,6 +34,15 @@ class InventarioController extends Controller
     public function create()
     {
         //
+        $marcas=Marca::all();
+        $modelos=Modelo::all();
+        $pantallas=Pantalla::all();
+        $procesadores=Procesador::all();
+        $estados=Estado::all();
+        $origenes=Origen::all();
+        $proveedores=Provedor::all();
+        return view('formularios.formulario_inventario',compact('marcas','modelos','pantallas',
+            'procesadores','estados','origenes','proveedores'));
     }
 
     /**
@@ -36,6 +54,24 @@ class InventarioController extends Controller
     public function store(Request $request)
     {
         //
+        $inventario=new Inventario();
+        $inventario['nombre_inventario']=$request->input('nombre_inventario');
+        $inventario['codigo_marca_inventario']=$request->input('codigo_marca_inventario');
+        $inventario['codigo_modelo_inventario']=$request->input('codigo_modelo_inventario');
+        $inventario['numero_serie_inventario']=$request->input('numero_serie_inventario');
+        $inventario['codigo_cpu_inventario']=$request->input('codigo_cpu_inventario');
+        $inventario['codigo_pantalla_inventario']=$request->input('codigo_pantalla_inventario');
+        $inventario['codigo_origen_inventario']=$request->input('codigo_origen_inventario');
+        $inventario['codigo_proveedor_inventario']=$request->input('codigo_proveedor_inventario');
+        $inventario['codigo_estado_inventario']=$request->input('codigo_estado_inventario');
+        $inventario['fecha_entrada_inventario']=$request->input('fecha_entrada_inventario');
+        $inventario['observaciones_inventario']=$request->input('observaciones_inventario');
+        $inventario['garantia_inventario']=$request->input('garantia_inventario');
+        $inventario->save();
+
+        return redirect('/inventario');
+
+
     }
 
     /**

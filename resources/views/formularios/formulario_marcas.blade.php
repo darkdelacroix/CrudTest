@@ -10,5 +10,5 @@
         <input type="text" name="observaciones_marca"class="form-control" id="observaciones_marca">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>

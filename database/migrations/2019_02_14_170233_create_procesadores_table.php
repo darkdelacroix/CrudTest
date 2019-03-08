@@ -15,7 +15,6 @@ class CreateProcesadoresTable extends Migration
     {
         Schema::create('procesadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('codigo_cpu')->unique();
             $table->string('nombre_cpu',50);
             $table->string('categoria_cpu',20);
             $table->string('modelo_cpu',20);

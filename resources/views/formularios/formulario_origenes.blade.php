@@ -1,9 +1,8 @@
+@extends('vistas.inicio')
+@section('content')
 <form method="get" action="/formulario_origenes">
 
-    <div class="form-group">
-        <label for="codigo_origen">Codigo origen:</label>
-        <input type="number" name="codigo_origen" class="form-control" id="codigo_origen">
-    </div>
+
     <div class="form-group">
         <label for="nombre_origen">Nombre origen:</label>
         <input type="text" name="nombre_origen" class="form-control" id="nombre_origen">
@@ -15,3 +14,4 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+    @endsection
