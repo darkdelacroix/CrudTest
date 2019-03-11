@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('layouts.app');
@@ -127,5 +116,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/inventario_borrar/{id}','InventarioController@destroy');
     Route::get('/inventario_editar/{id}','InventarioController@edit');
     Route::get('/inventario_update/{id}/','InventarioController@update');
+
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/crear_modelo','ModeloController@create');
+    Route::get('/formulario_modelos','ModeloController@store');
+    Route::get('/modelos','ModeloController@index');
+    Route::get('/modelo_borrar/{id}','ModeloController@destroy');
+    Route::get('/modelo_editar/{id}','ModeloController@edit');
+    Route::get('/modelo_update/{id}/','ModeloController@update');
 
 });

@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 
 class ModeloController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        //
+        $modelos=Modelo::all();
+        return view('layouts.tabla_modelos')->with('modelos',$modelos);
+
     }
 
     /**
@@ -25,6 +23,7 @@ class ModeloController extends Controller
     public function create()
     {
         //
+        return view('formularios.formulario_modelos');
     }
 
     /**
@@ -36,50 +35,57 @@ class ModeloController extends Controller
     public function store(Request $request)
     {
         //
+        $modelo=new Modelo();
+        $modelo['nombre_modelo']=$request->input('nombre_modelo');
+        $modelo['observaciones_modelo']=$request->input('observaciones_modelo');
+
+        if($modelo->save()){
+            return redirect('/modelos') ->with('success','Creado correctamente');;
+        }else{
+            $errors="Error";
+            return     back()->withErrors($errors);
+        }
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Modelo  $modelo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Modelo $modelo)
+    public function show(Ubicacion $ubicacion)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Modelo  $modelo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Modelo $modelo)
+    public function edit($id )
     {
         //
+        $modelo=Modelo::find($id);
+        return view('editar.modelos_editar')->with('modelo',$modelo);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modelo  $modelo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Modelo $modelo)
+    public function update($id, Request $request)
     {
         //
+        $modelo=Modelo::findOrFail($id);
+        $modelo['nombre_modelo']=$request->input('nombre_modelo');
+        $modelo['observaciones_modelo']=$request->input('observaciones_modelo');
+
+        $modelo->save();
+        $modelos=Modelo::all();
+        return view('layouts.tabla_modelos')->with('modelos',$modelos) ->with('success','Actualización completa');;
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Modelo  $modelo
+     * @param  \App\Ubicacion  $ubicacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modelo $modelo)
+    public function destroy($id)
     {
         //
+        $modelo=Modelo::findOrFail($id);
+        $modelo->delete();
+        return back()->withErrors(['Eliminacion completada']);
+
     }
 }
